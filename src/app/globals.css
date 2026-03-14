@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy: #153b5c;
+  --color-brand-green: #8ec63f;
+  --color-brand-orange: #f05a28;
+  --color-brand-blue: #00aced;
+  --color-brand-light: #f8fafc;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-light);
+    color: #333;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1cm;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
