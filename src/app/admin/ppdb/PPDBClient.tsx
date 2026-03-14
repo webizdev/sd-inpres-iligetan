@@ -12,7 +12,7 @@ export type Registration = {
   tempat_lahir: string;
   tanggal_lahir: string;
   agama: string;
-  alamat_tinggal: string;
+  alamat_lengkap: string;
   desa_kelurahan: string;
   kecamatan: string;
   nama_ayah: string;
@@ -212,7 +212,7 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
                   <p><span className="text-gray-500 w-32 inline-block">Jenis Kelamin:</span> <span>{selectedReg.jenis_kelamin === 'L' ? 'Laki-Laki' : 'Perempuan'}</span></p>
                   <p><span className="text-gray-500 w-32 inline-block">TTL:</span> <span>{selectedReg.tempat_lahir}, {new Date(selectedReg.tanggal_lahir).toLocaleDateString('id-ID')}</span></p>
                   <p><span className="text-gray-500 w-32 inline-block">Agama:</span> <span>{selectedReg.agama}</span></p>
-                  <p><span className="text-gray-500 w-32 inline-block">Alamat:</span> <span>{selectedReg.alamat_tinggal}, {selectedReg.desa_kelurahan}, {selectedReg.kecamatan}</span></p>
+                  <p><span className="text-gray-500 w-32 inline-block">Alamat:</span> <span>{selectedReg.alamat_lengkap}, {selectedReg.desa_kelurahan}, {selectedReg.kecamatan}</span></p>
                 </div>
 
                 <h4 className="font-bold text-brand-navy border-b pb-2 mb-4 mt-8">Informasi Orang Tua</h4>
