@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
 
-type Registration = {
+export type Registration = {
   nomor_pendaftaran: string;
   nama_lengkap: string;
   nama_panggilan: string;
@@ -92,8 +92,9 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
         .single();
 
       if (error) throw error;
+      const updatedReg = updatedData as Registration;
 
-      setData(data.map((item) => (item.nomor_pendaftaran === editId ? updatedData : item)));
+      setData(data.map((item) => (item.nomor_pendaftaran === editId ? updatedReg : item)));
       setIsEditOpen(false);
       alert('Status seleksi berhasil diubah!');
     } catch (error: unknown) {

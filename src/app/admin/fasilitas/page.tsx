@@ -1,4 +1,3 @@
-```typescript
 import { supabase } from '@/lib/supabase';
 import FasilitasClient from './FasilitasClient';
 
@@ -29,4 +28,3 @@ export default async function AdminFasilitas() {
 
   return <FasilitasClient initialData={fasilitasData} />;
 }
-```

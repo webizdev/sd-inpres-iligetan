@@ -1,5 +1,14 @@
 import Image from 'next/image';
 import { supabase } from '@/lib/supabase';
+import { PostgrestResponse } from '@supabase/supabase-js';
+
+type Guru = {
+  id: number;
+  nama: string;
+  jabatan: string;
+  foto_url: string | null;
+  created_at?: string;
+};
 
 export const revalidate = 60;
 
@@ -20,7 +29,7 @@ export default async function AkademikPage() {
   const { data: teachers, error } = await supabase
     .from('sdii_guru')
     .select('*')
-    .order('created_at', { ascending: true });
+    .order('created_at', { ascending: true }) as PostgrestResponse<Guru>;
 
   if (error) {
     console.error('Error fetching teachers:', error);

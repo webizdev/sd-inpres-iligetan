@@ -2,6 +2,22 @@ import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import PrintButtons from '@/components/PrintButtons';
+import { PostgrestResponse } from '@supabase/supabase-js';
+
+type Registration = {
+  nomor_pendaftaran: string;
+  nama_lengkap: string;
+  jenis_kelamin: string;
+  tempat_lahir: string;
+  tanggal_lahir: string;
+  agama: string;
+  alamat_lengkap: string;
+  nama_ayah: string;
+  nama_ibu: string;
+  no_hp_ortu: string;
+  pas_foto_url: string | null;
+  created_at: string;
+};
 
 // Disable caching for this route so it always fetches the latest data for the specific ID
 export const revalidate = 0;
@@ -26,7 +42,7 @@ export default async function PrintBuktiPendaftaran({
     .from('sdii_registrations')
     .select('*')
     .eq('nomor_pendaftaran', id)
-    .single();
+    .single() as { data: Registration | null; error: any };
 
   if (error || !reg) {
     console.error('Registration not found:', error);
