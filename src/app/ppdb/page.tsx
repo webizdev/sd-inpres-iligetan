@@ -113,8 +113,8 @@ export default function PPDBRegistration() {
       }
       // Reset form could go here
       
-    } catch (error: any) {
-      setErrorMsg(error.message || 'Terjadi kesalahan saat mendaftar.');
+    } catch (error: unknown) {
+      setErrorMsg((error instanceof Error ? error.message : 'Terjadi kesalahan saat mendaftar.'));
     } finally {
       setIsSubmitting(false);
     }

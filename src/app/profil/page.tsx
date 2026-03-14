@@ -48,7 +48,7 @@ export default function ProfilPage() {
               <span className="text-5xl mr-4 opacity-50">👁️</span> Visi
             </h2>
             <p className="text-xl font-medium leading-relaxed">
-              "Terwujudnya Peserta Didik yang Cerdas, Berprestasi, Berakhlak Mulia, dan Berwawasan Lingkungan berlandaskan Iman dan Taqwa."
+              &quot;Terwujudnya Peserta Didik yang Cerdas, Berprestasi, Berakhlak Mulia, dan Berwawasan Lingkungan berlandaskan Iman dan Taqwa.&quot;
             </p>
           </div>
 

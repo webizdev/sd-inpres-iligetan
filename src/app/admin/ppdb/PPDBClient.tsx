@@ -74,8 +74,8 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
 
       setData(data.filter((item) => item.nomor_pendaftaran !== nomor_pendaftaran));
       alert('Data pendaftar berhasil dihapus!');
-    } catch (error: any) {
-      alert('Gagal menghapus data: ' + error.message);
+    } catch (error: unknown) {
+      alert('Gagal menghapus data: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
     }
   };
 
@@ -96,8 +96,8 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
       setData(data.map((item) => (item.nomor_pendaftaran === editId ? updatedData : item)));
       setIsEditOpen(false);
       alert('Status seleksi berhasil diubah!');
-    } catch (error: any) {
-      alert('Terjadi kesalahan: ' + error.message);
+    } catch (error: unknown) {
+      alert('Gagal update status: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
     } finally {
       setIsSubmitting(false);
     }

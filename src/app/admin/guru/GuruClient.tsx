@@ -80,9 +80,9 @@ export default function GuruClient({ initialData }: { initialData: Guru[] }) {
       if (error) throw error;
 
       setData(data.filter((item) => item.id !== id));
-      alert('Data berhasil dihapus!');
-    } catch (error: any) {
-      alert('Gagal menghapus data: ' + error.message);
+      alert('Data guru berhasil dihapus!');
+    } catch (error) {
+      alert('Gagal menghapus guru: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
     }
   };
 
@@ -155,8 +155,8 @@ export default function GuruClient({ initialData }: { initialData: Guru[] }) {
       }
 
       closeFormModal();
-    } catch (error: any) {
-      alert('Terjadi kesalahan: ' + error.message);
+    } catch (error) {
+      alert('Terjadi kesalahan: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
       setIsSubmitting(false);
     }
   };

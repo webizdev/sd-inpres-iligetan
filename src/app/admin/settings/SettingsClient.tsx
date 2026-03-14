@@ -54,8 +54,8 @@ export default function SettingsClient({ initialData }: { initialData: Setting[]
 
       setData(data.filter((item) => item.id !== id));
       alert('Pengaturan berhasil dihapus!');
-    } catch (error: any) {
-      alert('Gagal menghapus pengaturan: ' + error.message);
+    } catch (error) {
+      alert('Gagal menghapus pengaturan: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
     }
   };
 
@@ -97,8 +97,9 @@ export default function SettingsClient({ initialData }: { initialData: Setting[]
       }
 
       closeFormModal();
-    } catch (error: any) {
-      alert('Terjadi kesalahan: ' + error.message);
+    } catch (error) {
+      alert('Terjadi kesalahan: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
+    } finally {
       setIsSubmitting(false);
     }
   };

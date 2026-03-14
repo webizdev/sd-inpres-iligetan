@@ -63,8 +63,11 @@ export async function POST(req: NextRequest) {
       path: data.path,
       url: publicUrlData?.publicUrl,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('API Upload error:', error);
-    return NextResponse.json({ error: 'Terjadi kesalahan internal server.' }, { status: 500 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Terjadi kesalahan internal server.' },
+      { status: 500 }
+    );
   }
 }

@@ -77,8 +77,8 @@ export default function FasilitasClient({ initialData }: { initialData: Fasilita
 
       setData(data.filter((item) => item.id !== id));
       alert('Fasilitas berhasil dihapus!');
-    } catch (error: any) {
-      alert('Gagal menghapus fasilitas: ' + error.message);
+    } catch (error) {
+      alert('Gagal menghapus fasilitas: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
     }
   };
 
@@ -143,8 +143,8 @@ export default function FasilitasClient({ initialData }: { initialData: Fasilita
       }
 
       closeFormModal();
-    } catch (error: any) {
-      alert('Terjadi kesalahan: ' + error.message);
+    } catch (error) {
+      alert('Terjadi kesalahan: ' + (error instanceof Error ? error.message : 'Terjadi kesalahan'));
       setIsSubmitting(false);
     }
   };
