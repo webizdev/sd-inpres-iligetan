@@ -84,8 +84,7 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
     setIsSubmitting(true);
 
     try {
-      const { data: updatedData, error } = await supabase
-        .from('sdii_registrations')
+      const { data: updatedData, error } = await (supabase.from('sdii_registrations') as any)
         .update({ status_seleksi: editStatus })
         .eq('nomor_pendaftaran', editId)
         .select()
