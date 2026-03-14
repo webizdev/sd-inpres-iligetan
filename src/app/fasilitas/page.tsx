@@ -9,12 +9,28 @@ export const metadata = {
   description: 'Fasilitas pendidikan dan sarana prasarana SD Inpres Iligetan',
 };
 
+interface FasilitasItem {
+  id: string;
+  nama: string;
+  deskripsi: string;
+  foto_url: string;
+  created_at: string;
+}
+
 export default async function FasilitasPage() {
-  // Fetch fasilitas data from Supabase
-  const { data: fasilitas, error } = await supabase
-    .from('sdii_fasilitas')
-    .select('*')
-    .order('created_at', { ascending: true });
+  // Fetch fasilitas data from Supabase with safety check
+  let fasilitas: FasilitasItem[] = [];
+  let error = null;
+
+  if (supabase) {
+    const { data, error: fetchError } = await supabase
+      .from('sdii_fasilitas')
+      .select('*')
+      .order('created_at', { ascending: true });
+    
+    fasilitas = (data as FasilitasItem[]) || [];
+    error = fetchError;
+  }
 
   if (error) {
     console.error('Error fetching fasilitas:', error);
@@ -36,7 +52,7 @@ export default async function FasilitasPage() {
         {/* Fasilitas Grid */}
         {fasilitas && fasilitas.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {fasilitas.map((item) => (
+            {fasilitas.map((item: FasilitasItem) => (
               <div key={item.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 <div className="relative h-64 w-full bg-gray-200">
                   {item.foto_url ? (

@@ -5,14 +5,18 @@ import SettingsClient from './SettingsClient';
 export const revalidate = 0;
 
 export default async function SettingsPage() {
-  const { data: settingsData, error } = await supabase
-    .from('sdii_pengaturan_beranda')
-    .select('*')
-    .order('setting_key', { ascending: true });
+  let settingsData = [];
+  if (supabase) {
+    const { data, error } = await supabase
+      .from('sdii_pengaturan_beranda')
+      .select('*')
+      .order('setting_key', { ascending: true });
 
-  if (error) {
-    console.error('Error fetching settings:', error);
+    if (error) {
+      console.error('Error fetching settings:', error);
+    }
+    settingsData = data || [];
   }
 
-  return <SettingsClient initialData={settingsData || []} />;
+  return <SettingsClient initialData={settingsData} />;
 }
