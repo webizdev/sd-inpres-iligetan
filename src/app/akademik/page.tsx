@@ -9,6 +9,14 @@ export const metadata = {
 };
 
 export default async function AkademikPage() {
+  if (!supabase) {
+    return (
+      <div className="bg-gray-50 min-h-screen py-20 flex items-center justify-center">
+        <p className="text-gray-500">Koneksi database belum tersedia.</p>
+      </div>
+    );
+  }
+
   const { data: teachers, error } = await supabase
     .from('sdii_guru')
     .select('*')

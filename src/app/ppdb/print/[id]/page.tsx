@@ -14,6 +14,14 @@ export default async function PrintBuktiPendaftaran({
   const resolvedParams = await params;
   const id = resolvedParams.id;
 
+  if (!supabase) {
+    return (
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <p className="text-gray-500">Database tidak terhubung. Tidak dapat mencetak bukti.</p>
+      </div>
+    );
+  }
+
   const { data: reg, error } = await supabase
     .from('sdii_registrations')
     .select('*')

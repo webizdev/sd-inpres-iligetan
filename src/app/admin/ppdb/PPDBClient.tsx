@@ -20,8 +20,8 @@ type Registration = {
   pekerjaan_ortu: string;
   no_hp_ortu: string;
   pas_foto_url: string | null;
-  kk_url: string | null;
-  akta_url: string | null;
+  fc_kk_url: string | null;
+  fc_akta_url: string | null;
   status_seleksi: string | null;
   created_at: string;
 };
@@ -61,8 +61,8 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
       if (regToDelete) {
         const filesToRemove = [];
         if (regToDelete.pas_foto_url) filesToRemove.push(`ppdb/${regToDelete.pas_foto_url.split('/').pop()}`);
-        if (regToDelete.kk_url) filesToRemove.push(`ppdb/${regToDelete.kk_url.split('/').pop()}`);
-        if (regToDelete.akta_url) filesToRemove.push(`ppdb/${regToDelete.akta_url.split('/').pop()}`);
+        if (regToDelete.fc_kk_url) filesToRemove.push(`ppdb/${regToDelete.fc_kk_url.split('/').pop()}`);
+        if (regToDelete.fc_akta_url) filesToRemove.push(`ppdb/${regToDelete.fc_akta_url.split('/').pop()}`);
 
         if (filesToRemove.length > 0) {
           await supabase.storage.from('sdii_ppdb_docs').remove(filesToRemove);
@@ -244,9 +244,9 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <h5 className="text-sm font-semibold mb-2 text-gray-600">Kartu Keluarga</h5>
-                      {selectedReg.kk_url ? (
-                        <a href={selectedReg.kk_url} target="_blank" rel="noreferrer" className="block relative h-32 w-full bg-gray-100 border border-gray-300 rounded hover:opacity-80 transition-opacity">
-                          <Image src={selectedReg.kk_url} alt="Kartu Keluarga" fill className="object-cover" />
+                      {selectedReg.fc_kk_url ? (
+                        <a href={selectedReg.fc_kk_url} target="_blank" rel="noreferrer" className="block relative h-32 w-full bg-gray-100 border border-gray-300 rounded hover:opacity-80 transition-opacity">
+                          <Image src={selectedReg.fc_kk_url} alt="Kartu Keluarga" fill className="object-cover" />
                           <div className="absolute flex inset-0 items-center justify-center bg-black/40 text-white opacity-0 hover:opacity-100 transition-opacity text-sm font-semibold">Lihat Penuh</div>
                         </a>
                       ) : (
@@ -255,9 +255,9 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
                     </div>
                     <div>
                       <h5 className="text-sm font-semibold mb-2 text-gray-600">Akta Kelahiran</h5>
-                      {selectedReg.akta_url ? (
-                         <a href={selectedReg.akta_url} target="_blank" rel="noreferrer" className="block relative h-32 w-full bg-gray-100 border border-gray-300 rounded hover:opacity-80 transition-opacity">
-                         <Image src={selectedReg.akta_url} alt="Akta Kelahiran" fill className="object-cover" />
+                      {selectedReg.fc_akta_url ? (
+                         <a href={selectedReg.fc_akta_url} target="_blank" rel="noreferrer" className="block relative h-32 w-full bg-gray-100 border border-gray-300 rounded hover:opacity-80 transition-opacity">
+                         <Image src={selectedReg.fc_akta_url} alt="Akta Kelahiran" fill className="object-cover" />
                          <div className="absolute flex inset-0 items-center justify-center bg-black/40 text-white opacity-0 hover:opacity-100 transition-opacity text-sm font-semibold">Lihat Penuh</div>
                        </a>
                       ) : (
