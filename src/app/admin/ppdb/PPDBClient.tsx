@@ -84,6 +84,7 @@ export default function PPDBClient({ initialData }: { initialData: Registration[
     setIsSubmitting(true);
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: updatedData, error } = await (supabase.from('sdii_registrations') as any)
         .update({ status_seleksi: editStatus })
         .eq('nomor_pendaftaran', editId)
