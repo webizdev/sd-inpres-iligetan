@@ -9,6 +9,10 @@ export async function POST(req: NextRequest) {
     const file = formData.get('file') as File | null;
     const bucket = formData.get('bucket') as string || 'sdii_public_assets';
     const folder = formData.get('folder') as string || '';
+ 
+    if (!supabaseAdmin) {
+      return NextResponse.json({ error: 'Koneksi database (Admin) tidak tersedia.' }, { status: 500 });
+    }
 
     if (!file) {
       return NextResponse.json({ error: 'Tidak ada file yang diunggah.' }, { status: 400 });
