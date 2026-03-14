@@ -4,7 +4,7 @@ import FasilitasClient from './FasilitasClient';
 export const revalidate = 0; // Don't cache admin page
 
 export default async function FasilitasPage() {
-  let fasilitasData = [];
+  let fasilitasData: any[] = [];
   if (supabase) {
     const { data, error } = await supabase
       .from('sdii_fasilitas')
@@ -17,5 +17,5 @@ export default async function FasilitasPage() {
     fasilitasData = data || [];
   }
 
-  return <FasilitasClient initialData={fasilitasData || []} />;
+  return <FasilitasClient initialData={fasilitasData} />;
 }

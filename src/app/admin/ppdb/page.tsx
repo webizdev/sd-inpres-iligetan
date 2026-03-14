@@ -4,7 +4,7 @@ import PPDBClient from './PPDBClient';
 export const revalidate = 0;
 
 export default async function PPDBPage() {
-  let ppdbData = [];
+  let ppdbData: any[] = [];
   if (supabase) {
     const { data, error } = await supabase
       .from('sdii_registrations')

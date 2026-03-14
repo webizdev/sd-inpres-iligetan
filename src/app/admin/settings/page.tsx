@@ -5,7 +5,7 @@ import SettingsClient from './SettingsClient';
 export const revalidate = 0;
 
 export default async function SettingsPage() {
-  let settingsData = [];
+  let settingsData: any[] = [];
   if (supabase) {
     const { data, error } = await supabase
       .from('sdii_pengaturan_beranda')

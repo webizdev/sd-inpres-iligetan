@@ -4,7 +4,7 @@ import GuruClient from './GuruClient';
 export const revalidate = 0; // Don't cache admin page
 
 export default async function GuruPage() {
-  let guruData = [];
+  let guruData: any[] = [];
   if (supabase) {
     const { data, error } = await supabase
       .from('sdii_guru')
