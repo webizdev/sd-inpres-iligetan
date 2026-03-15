@@ -94,7 +94,7 @@ export default function PPDBRegistration() {
 
       // 2. Insert data to Supabase
       const generatedNoDaftar = `PPDB-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
-      const { data: newReg, error } = await supabase.from('sdii_registrations').insert([
+      const { data: newReg, error } = await (supabase.from('sdii_registrations') as any).insert([
         {
           ...formData,
           nomor_pendaftaran: generatedNoDaftar,
