@@ -49,7 +49,7 @@ export default function SettingsClient({ initialData }: { initialData: Setting[]
     if (!window.confirm(`PERINGATAN! Anda yakin ingin menghapus pengaturan "${key}"? Ini dapat merusak tampilan website jika key ini dibutuhkan oleh sistem.`)) return;
 
     try {
-      const { error } = await supabase.from('sdii_pengaturan_beranda').delete().eq('id', id);
+      const { error } = await (supabase.from('sdii_pengaturan_beranda') as any).delete().eq('id', id);
       if (error) throw error;
 
       setData(data.filter((item) => item.id !== id));
@@ -72,8 +72,7 @@ export default function SettingsClient({ initialData }: { initialData: Setting[]
 
       if (isEditing && currentId) {
         // Update
-        const { data: updatedData, error } = await supabase
-          .from('sdii_pengaturan_beranda')
+        const { data: updatedData, error } = await (supabase.from('sdii_pengaturan_beranda') as any)
           .update(payload)
           .eq('id', currentId)
           .select()
@@ -85,8 +84,7 @@ export default function SettingsClient({ initialData }: { initialData: Setting[]
         
       } else {
         // Insert
-        const { data: newData, error } = await supabase
-          .from('sdii_pengaturan_beranda')
+        const { data: newData, error } = await (supabase.from('sdii_pengaturan_beranda') as any)
           .insert([payload])
           .select()
           .single();
