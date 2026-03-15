@@ -119,8 +119,7 @@ export default function FasilitasClient({ initialData }: { initialData: Fasilita
       };
 
       if (isEditing && currentId) {
-        const { data: updatedData, error } = await supabase
-          .from('sdii_fasilitas')
+        const { data: updatedData, error } = await (supabase.from('sdii_fasilitas') as any)
           .update(payload)
           .eq('id', currentId)
           .select()
@@ -131,8 +130,7 @@ export default function FasilitasClient({ initialData }: { initialData: Fasilita
         alert('Data fasilitas berhasil diperbarui!');
         
       } else {
-        const { data: newData, error } = await supabase
-          .from('sdii_fasilitas')
+        const { data: newData, error } = await (supabase.from('sdii_fasilitas') as any)
           .insert([payload])
           .select()
           .single();

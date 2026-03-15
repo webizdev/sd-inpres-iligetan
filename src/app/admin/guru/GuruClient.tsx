@@ -129,8 +129,7 @@ export default function GuruClient({ initialData }: { initialData: Guru[] }) {
 
       if (isEditing && currentId) {
         // Update
-        const { data: updatedData, error } = await supabase
-          .from('sdii_guru')
+        const { data: updatedData, error } = await (supabase.from('sdii_guru') as any)
           .update(payload)
           .eq('id', currentId)
           .select()
@@ -142,8 +141,7 @@ export default function GuruClient({ initialData }: { initialData: Guru[] }) {
         
       } else {
         // Insert
-        const { data: newData, error } = await supabase
-          .from('sdii_guru')
+        const { data: newData, error } = await (supabase.from('sdii_guru') as any)
           .insert([payload])
           .select()
           .single();
